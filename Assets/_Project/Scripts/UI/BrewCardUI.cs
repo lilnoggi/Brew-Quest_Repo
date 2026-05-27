@@ -16,7 +16,7 @@ public class BrewCardUI : MonoBehaviour
     /// <summary>
     /// Called by the Manager when this card is spawned to give it data.
     /// </summary>
-    public void InitializeCard(CustomBrew brew)
+    public void InitialiseCard(CustomBrew brew)
     {
         _brewData = brew;
         

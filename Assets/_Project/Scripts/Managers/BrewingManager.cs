@@ -37,5 +37,16 @@ public class BrewingManager : MonoBehaviour
 
         // Print a success message to the console
         Debug.Log($"SUCCESS! Brewed '{newDrink.CustomName}' with a base value of {newDrink.BaseDrinkValue} gold.");
+
+        // Tell the Tavern Menu to refresh instantly so the new drink appears
+        BrewMenuManager menuManager = FindAnyObjectByType<BrewMenuManager>();
+        if (menuManager != null)
+        {
+            menuManager.RefreshMenu();
+        }
+        else
+        {
+            Debug.LogWarning("Could not find a BrewMenuManager in the scene. Make sure one is present to refresh the menu.");
+        }
     }
 }

@@ -29,10 +29,7 @@ public class SaveSystem : MonoBehaviour
 
         // Set the hidden file path on the user's mobile device or PC
         _saveFilePath = Path.Combine(Application.persistentDataPath, "brewquest_save.json");
-    }
 
-    private void Start()
-    {
         // Automatically load the game (and calculate offline earnings) the moment the app opens
         LoadGameProgress();
     }

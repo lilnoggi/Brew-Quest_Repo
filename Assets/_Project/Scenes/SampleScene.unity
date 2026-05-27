@@ -486,7 +486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &230776022
 RectTransform:
   m_ObjectHideFlags: 0
@@ -653,7 +653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &290274832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1138,7 +1138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &421439985
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2404,6 +2404,7 @@ GameObject:
   - component: {fileID: 1269801124}
   - component: {fileID: 1269801125}
   - component: {fileID: 1269801126}
+  - component: {fileID: 1269801127}
   m_Layer: 0
   m_Name: MANAGERS
   m_TagString: Untagged
@@ -2490,6 +2491,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyManager
   _goldText: {fileID: 56174523}
+--- !u!114 &1269801127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269801121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b5ab4da765c941986d5880d6f3931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrewMenuManager
+  _brewCardPrefab: {fileID: 6831157271335997272, guid: 10937300b2e96a848b11bccfe813e1a6, type: 3}
+  _contentContainer: {fileID: 1791835682}
 --- !u!1 &1367282990
 GameObject:
   m_ObjectHideFlags: 0
@@ -3280,10 +3295,10 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: 20
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
