@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6811f7223cadff443a063e6d89439a69, type: 3}
   m_Name: RoastedBeans
   m_EditorClassIdentifier: Assembly-CSharp::IngredientData
-  _ingredientName: 
+  _ingredientName: Roasted Beans
   _icon: {fileID: 0}
-  _tier: 0
-  _flavourProfile: 0
-  _baseValueContribution: 0
+  _tier: 1
+  _flavourProfile: 1
+  _baseValueContribution: 12
