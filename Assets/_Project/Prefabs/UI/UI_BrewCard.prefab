@@ -423,6 +423,7 @@ GameObject:
   - component: {fileID: 2747580811087589475}
   - component: {fileID: 7109458978416234997}
   - component: {fileID: 6181753634343759839}
+  - component: {fileID: 4836646959809839381}
   m_Layer: 5
   m_Name: UI_BrewCard
   m_TagString: Untagged
@@ -534,3 +535,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4836646959809839381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6831157271335997272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa23cd73cc3cbd546ac6434446c0868e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrewCardUI
+  _nameText: {fileID: 6449683694025453713}
+  _levelText: {fileID: 1860579577955436902}
+  _costText: {fileID: 7128853227658565159}
+  _upgradeButton: {fileID: 6181753634343759839}
