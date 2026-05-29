@@ -502,7 +502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &130900053
@@ -1523,7 +1523,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 473767668}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1269801128}
+        m_TargetAssemblyTypeName: BrewingCellarManager, Assembly-CSharp
+        m_MethodName: ToggleDrawer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &473767668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2181,11 +2193,11 @@ RectTransform:
   - {fileID: 806975390}
   m_Father: {fileID: 421439985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.16700001}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1357.5}
-  m_SizeDelta: {x: 0, y: -479}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1300}
+  m_SizeDelta: {x: 1080, y: 1600}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &792773672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2298,7 +2310,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 1120}
+  m_SizeDelta: {x: 1080, y: 1600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &806975391
 MonoBehaviour:
@@ -3261,9 +3273,9 @@ GameObject:
   - component: {fileID: 1269801123}
   - component: {fileID: 1269801122}
   - component: {fileID: 1269801124}
-  - component: {fileID: 1269801125}
   - component: {fileID: 1269801126}
   - component: {fileID: 1269801127}
+  - component: {fileID: 1269801128}
   m_Layer: 0
   m_Name: MANAGERS
   m_TagString: Untagged
@@ -3322,21 +3334,6 @@ MonoBehaviour:
     playerLevel: 1
     lastSavedTimestamp: 26/05/2026 23:46:49
     savedBrewsList: []
---- !u!114 &1269801125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1269801121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f57ff8bca17b2845b09c83a40f6e0f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BrewingManager
-  _slot1: {fileID: 11400000, guid: 64a0d89e0e7054844b89b4ac62853499, type: 2}
-  _slot2: {fileID: 11400000, guid: 7c6dfcb68affb6543a32078dbb7ab818, type: 2}
-  _testDrinkName: My First Brew
 --- !u!114 &1269801126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3364,6 +3361,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BrewMenuManager
   _brewCardPrefab: {fileID: 6831157271335997272, guid: 10937300b2e96a848b11bccfe813e1a6, type: 3}
   _contentContainer: {fileID: 1791835682}
+--- !u!114 &1269801128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269801121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0141174bb6cb0642a895e1597e01ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrewingCellarManager
+  _masterIngredientDatabase: []
+  _drawerPanel: {fileID: 792773671}
+  _gridContentContainer: {fileID: 130900052}
+  _inventorySlotPrefab: {fileID: 4427351429443535582, guid: 3a678635138089c48a2c1f8893d765c4, type: 3}
+  _totalGridSize: 50
+  _drawerOpenYPosition: 0
+  _drawerClosedYPosition: -1300
 --- !u!1 &1367282990
 GameObject:
   m_ObjectHideFlags: 0
@@ -3447,7 +3463,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1269801125}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BrewingManager, Assembly-CSharp
         m_MethodName: MixTestDrink
         m_Mode: 1
@@ -3932,7 +3948,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 830551328}
   m_HandleRect: {fileID: 830551327}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
