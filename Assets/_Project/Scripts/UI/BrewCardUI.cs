@@ -8,6 +8,7 @@ public class BrewCardUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _levelText;
     [SerializeField] private TextMeshProUGUI _costText;
+    [SerializeField] private TextMeshProUGUI _valueText;
     [SerializeField] private Button _upgradeButton;
 
     // This hold the exact data for this specific drink
@@ -35,6 +36,10 @@ public class BrewCardUI : MonoBehaviour
         // Calculate how much it costs to reach the NEXT level
         double cost = IdleMathsBridge.CalculateUpgradeCost(_brewData.BaseDrinkValue, _brewData.CurrentLevel);
         _costText.text = $"Upgrade Cost: {BigNumberFormatter.FormatValue(cost)} Gold";
+
+        // Calculate and display how much this drink earns per second
+        double value = IdleMathsBridge.CalculateDrinkRevenuePerSecond(_brewData.BaseDrinkValue, _brewData.CurrentLevel);
+        _valueText.text = $"+{BigNumberFormatter.FormatValue(value)} G/sec";
     }
 
     private void AttemptUpgrade()
