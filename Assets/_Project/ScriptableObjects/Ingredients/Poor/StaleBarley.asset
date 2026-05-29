@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StaleBarley
   m_EditorClassIdentifier: Assembly-CSharp::IngredientData
   _ingredientName: Stale Barley
-  _icon: {fileID: 0}
+  _icon: {fileID: -328712847, guid: 9d651ce81977a3342960f93cdd53aaba, type: 3}
   _tier: 0
   _flavourProfile: 1
   _baseValueContribution: 3

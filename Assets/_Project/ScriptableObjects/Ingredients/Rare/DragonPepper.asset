@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DragonPepper
   m_EditorClassIdentifier: Assembly-CSharp::IngredientData
   _ingredientName: Dragon Pepper
-  _icon: {fileID: 0}
+  _icon: {fileID: 1256890472, guid: 9d651ce81977a3342960f93cdd53aaba, type: 3}
   _tier: 2
   _flavourProfile: 2
   _baseValueContribution: 50

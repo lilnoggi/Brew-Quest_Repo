@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ElvenAmbrosia
   m_EditorClassIdentifier: Assembly-CSharp::IngredientData
   _ingredientName: Elven Ambrosia
-  _icon: {fileID: 0}
+  _icon: {fileID: -468943551, guid: 9d651ce81977a3342960f93cdd53aaba, type: 3}
   _tier: 3
   _flavourProfile: 0
   _baseValueContribution: 275

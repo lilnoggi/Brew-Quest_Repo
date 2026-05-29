@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoonlitHoney
   m_EditorClassIdentifier: Assembly-CSharp::IngredientData
   _ingredientName: Moonlit Honey
-  _icon: {fileID: 0}
+  _icon: {fileID: 826050278, guid: 9d651ce81977a3342960f93cdd53aaba, type: 3}
   _tier: 2
   _flavourProfile: 0
   _baseValueContribution: 70

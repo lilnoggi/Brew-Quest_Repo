@@ -28,8 +28,7 @@ public class InventorySlotUI : MonoBehaviour
         _ingredientData = data;
         _cellarManager = manager;
 
-        // Set the actual sprite here once assets are ready
-        // _ingredientIcon.sprite = data.Icon; // Set the icon to the ingredient's sprite
+        _ingredientIcon.sprite = data.Icon; // Set the icon to the ingredient's sprite
 
         _ingredientIcon.gameObject.SetActive(true); // Show the icon
         _slotButton.interactable = true; // Enable the button

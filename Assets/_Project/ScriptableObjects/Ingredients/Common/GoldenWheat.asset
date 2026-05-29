@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoldenWheat
   m_EditorClassIdentifier: Assembly-CSharp::IngredientData
   _ingredientName: Golden Wheat
-  _icon: {fileID: 0}
+  _icon: {fileID: -944251509, guid: 9d651ce81977a3342960f93cdd53aaba, type: 3}
   _tier: 1
   _flavourProfile: 0
   _baseValueContribution: 7

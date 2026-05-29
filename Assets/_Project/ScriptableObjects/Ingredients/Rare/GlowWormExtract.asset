@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlowWormExtract
   m_EditorClassIdentifier: Assembly-CSharp::IngredientData
   _ingredientName: Glow-worm Extract
-  _icon: {fileID: 0}
+  _icon: {fileID: -706179610, guid: 9d651ce81977a3342960f93cdd53aaba, type: 3}
   _tier: 2
   _flavourProfile: 3
   _baseValueContribution: 60

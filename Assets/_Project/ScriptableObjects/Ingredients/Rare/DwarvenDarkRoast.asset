@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DwarvenDarkRoast
   m_EditorClassIdentifier: Assembly-CSharp::IngredientData
   _ingredientName: Dwarven Dark Roast
-  _icon: {fileID: 0}
+  _icon: {fileID: -889762416, guid: 9d651ce81977a3342960f93cdd53aaba, type: 3}
   _tier: 2
   _flavourProfile: 1
   _baseValueContribution: 65

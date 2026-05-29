@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StarfallNectar
   m_EditorClassIdentifier: Assembly-CSharp::IngredientData
   _ingredientName: Starfall Nectar
-  _icon: {fileID: 0}
+  _icon: {fileID: -302354601, guid: 9d651ce81977a3342960f93cdd53aaba, type: 3}
   _tier: 3
   _flavourProfile: 3
   _baseValueContribution: 300
