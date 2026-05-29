@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // Needed for UI components like Image and Button
 
 public class BrewingCellarManager : MonoBehaviour
 {
@@ -18,7 +19,18 @@ public class BrewingCellarManager : MonoBehaviour
     [Tooltip("The Y position when the drawer is fully CLOSED (e.g. -1118)")]
     [SerializeField] private float _drawerClosedYPosition = -1118f;
 
+    [Header("Selected Ingredient Slots")]
+    [SerializeField] private Image _uiSlot1Image; // Drag "Slot 1" Image here
+    [SerializeField] private Image _uiSlot2Image; // Drag "Slot 2" Image here
+    [SerializeField] private Button _mixButton; // Drag the central "Mix" Button here
+
     private bool _isDrawerOpen = false;
+
+    // --- TRACK WHAT INGREDIENTS THE PLAYER HAS SELECTED FOR BREWING ---
+    private IngredientData _selectedIngredient1;
+    private IngredientData _selectedIngredient2;
+
+    // ------------------------------------------------------------------------------------------------
 
     private void Start()
     {
@@ -98,9 +110,76 @@ public class BrewingCellarManager : MonoBehaviour
 
     public void SelectIngredient(IngredientData ingredient)
     {
-        // This method will be called by the InventorySlotUI when a player taps an ingredient
-        Debug.Log($"Selected ingredient: {ingredient.IngredientName}");
+        // Check if Slot 1 is empty, if it is, put the ingredient there
+        if (_selectedIngredient1 == null)
+        {
+            _selectedIngredient1 = ingredient;
+            _uiSlot1Image.sprite = ingredient.Icon; // Update the UI image to show the selected ingredient
+            _uiSlot1Image.color = Color.white; // Ensure the image is visible (in case it was greyed out)
+        }
+        // Otherwise, check if Slot 2 is empty, if it is, put the ingredient there
+        else if (_selectedIngredient2 == null)
+        {
+            _selectedIngredient2 = ingredient;
+            _uiSlot2Image.sprite = ingredient.Icon; // Update the UI image to show the selected ingredient
+            _uiSlot2Image.color = Color.white; // Ensure the image is visible (in case it was greyed out)
 
-        // TODO: Add logic to put this ingredient into Slot 1 or Slot 2 for brewing, and update the UI accordingly
+            // Both slots are filled, close the drawer automatically
+            if (_isDrawerOpen)
+            {
+                ToggleDrawer();
+            }
+        }
+        else
+        {
+            Debug.Log("Both ingredient slots are already filled!");
+        }
+    }
+
+    // Attach to the main "MIX" button
+    public void AttemptToMixDrink()
+    {
+        // SAFETY CHECK: Ensure both slots are filled before attempting to mix
+        if (_selectedIngredient1 == null || _selectedIngredient2 == null)
+        {
+            Debug.Log("Please select two ingredients before mixing!");
+            return;
+        }
+
+        // Calculate the resulting drink based on the two selected ingredients
+        double calculatedBaseValue = IdleMathsBridge.CalculateBaseDrinkValue(_selectedIngredient1, _selectedIngredient2);
+
+        // Create the drink (placeholder name for now until the naming system is implemented)
+        string temporaryName = "Mystery Cellar Brew";
+        CustomBrew newDrink = new CustomBrew(temporaryName, calculatedBaseValue, 0, 0);
+
+        // Save the new drink to the save system (this will be expanded later to include the actual recipe and not just the resulting drink)
+        SaveSystem.Instance.CurrentProfile.savedBrewsList.Add(newDrink);
+        SaveSystem.Instance.SaveGameProgress(); // Save immediately to ensure the new brew is stored
+
+        // Tell the Tavern Menu to refresh so the new brew appears on tap right away
+        BrewMenuManager menuManager = FindAnyObjectByType<BrewMenuManager>();
+        if (menuManager != null)
+        {
+            menuManager.RefreshMenu();
+        }
+        
+        Debug.Log($"SUCCESS! Brewed {newDrink.CustomName} with {_selectedIngredient1.IngredientName} and {_selectedIngredient2.IngredientName}. Base Value: {newDrink.BaseDrinkValue}");
+
+        // Reset the UI so the player can brew again
+        ClearSelectedSlots();
+    }
+
+    private void ClearSelectedSlots()
+    {
+        // Wipe the data
+        _selectedIngredient1 = null;
+        _selectedIngredient2 = null;
+
+        _uiSlot1Image.sprite = null; // Clear the image
+        _uiSlot1Image.color = new Color(1, 1, 1, 0); // Make it invisible
+
+        _uiSlot2Image.sprite = null; // Clear the image
+        _uiSlot2Image.color = new Color(1, 1, 1, 0); // Make it invisible
     }
 }

@@ -3373,13 +3373,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0141174bb6cb0642a895e1597e01ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrewingCellarManager
-  _masterIngredientDatabase: []
+  _masterIngredientDatabase:
+  - {fileID: 11400000, guid: afc936005fd96f945a6e52a8f714d41f, type: 2}
+  - {fileID: 11400000, guid: 64a0d89e0e7054844b89b4ac62853499, type: 2}
+  - {fileID: 11400000, guid: 437d8edd8f5b5f24984042b89147e649, type: 2}
+  - {fileID: 11400000, guid: 95d555681cb082c4ca438a13aa3eb11d, type: 2}
+  - {fileID: 11400000, guid: 7c6dfcb68affb6543a32078dbb7ab818, type: 2}
+  - {fileID: 11400000, guid: 34a9e79562dbabf49ba5c95faf115b48, type: 2}
+  - {fileID: 11400000, guid: 9dffb7b4d5818334b9fa37442bd2444b, type: 2}
+  - {fileID: 11400000, guid: bd699f4351938d04ab8e77490b05bea7, type: 2}
+  - {fileID: 11400000, guid: 332f8d250e6ab734d9cba3ba81b72f40, type: 2}
+  - {fileID: 11400000, guid: a31148c9c57dba548934d23eef54fbd2, type: 2}
+  - {fileID: 11400000, guid: 91dee59ada1cf3a43886dd170547221f, type: 2}
+  - {fileID: 11400000, guid: 2ab8e9e6c99a510499e9f8a2fb2be471, type: 2}
+  - {fileID: 11400000, guid: a88999454a6281645981d297535eb2fa, type: 2}
+  - {fileID: 11400000, guid: 39cc45f38d50b7e4f93343e61b6585dd, type: 2}
+  - {fileID: 11400000, guid: 8e646ce8e6a81294aa9fdf7b66086c41, type: 2}
+  - {fileID: 11400000, guid: af96c053f45a9cd4fb1a733e6351dd93, type: 2}
+  - {fileID: 11400000, guid: ed157332420dcfb429212dba25e28029, type: 2}
+  - {fileID: 11400000, guid: 332abba4b591a6d41ba6687b1cca1080, type: 2}
+  - {fileID: 11400000, guid: f1041e11eb7843e40b4af58a37fbea61, type: 2}
+  - {fileID: 11400000, guid: d917c7866f1a5074f9697ed59c176db1, type: 2}
   _drawerPanel: {fileID: 792773671}
   _gridContentContainer: {fileID: 130900052}
   _inventorySlotPrefab: {fileID: 4427351429443535582, guid: 3a678635138089c48a2c1f8893d765c4, type: 3}
   _totalGridSize: 50
   _drawerOpenYPosition: 0
   _drawerClosedYPosition: -1300
+  _uiSlot1Image: {fileID: 1729417729}
+  _uiSlot2Image: {fileID: 534441483}
+  _mixButton: {fileID: 1367282992}
 --- !u!1 &1367282990
 GameObject:
   m_ObjectHideFlags: 0
@@ -3463,9 +3486,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BrewingManager, Assembly-CSharp
-        m_MethodName: MixTestDrink
+      - m_Target: {fileID: 1269801128}
+        m_TargetAssemblyTypeName: BrewingCellarManager, Assembly-CSharp
+        m_MethodName: AttemptToMixDrink
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
