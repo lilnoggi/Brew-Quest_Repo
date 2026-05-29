@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI; // Needed for UI components like Image and Button
 
@@ -23,6 +24,13 @@ public class BrewingCellarManager : MonoBehaviour
     [SerializeField] private Image _uiSlot1Image; // Drag "Slot 1" Image here
     [SerializeField] private Image _uiSlot2Image; // Drag "Slot 2" Image here
     [SerializeField] private Button _mixButton; // Drag the central "Mix" Button here
+
+    [Header("Naming Popup UI")]
+    [SerializeField] private GameObject _namingPopupPanel;
+    [SerializeField] private TMP_InputField _nameInputField;
+
+    // Temporarly hold the value of the mixed brew while the player types the name
+    private double _pendingBaseValue;
 
     private bool _isDrawerOpen = false;
 
@@ -147,11 +155,31 @@ public class BrewingCellarManager : MonoBehaviour
         }
 
         // Calculate the resulting drink based on the two selected ingredients
-        double calculatedBaseValue = IdleMathsBridge.CalculateBaseDrinkValue(_selectedIngredient1, _selectedIngredient2);
+        _pendingBaseValue = IdleMathsBridge.CalculateBaseDrinkValue(_selectedIngredient1, _selectedIngredient2);
 
-        // Create the drink (placeholder name for now until the naming system is implemented)
-        string temporaryName = "Mystery Cellar Brew";
-        CustomBrew newDrink = new CustomBrew(temporaryName, calculatedBaseValue, 0, 0);
+        // Prepare the popup
+        _nameInputField.text = ""; // Clear out any old text
+
+        // Show the naming popup
+        _namingPopupPanel.SetActive(true);
+    }
+
+    /// <summary>
+    /// Attatch this to the "Confirm" button inside the Naming Popup Panel
+    /// </summary>
+    public void ConfirmDrinkName()
+    {
+        // Get the typed name, or give a default if left blank
+        string finalName = _nameInputField.text;
+        if (string.IsNullOrWhiteSpace(finalName))
+        {
+            finalName = "Nameless Brew";
+
+            // FUTURE: Depending on the ingredients used, give a name that relates to the brew.
+        }
+
+        // Create the final drink using the held value
+        CustomBrew newDrink = new CustomBrew(finalName, _pendingBaseValue, 0, 0);
 
         // Save the new drink to the save system (this will be expanded later to include the actual recipe and not just the resulting drink)
         SaveSystem.Instance.CurrentProfile.savedBrewsList.Add(newDrink);
@@ -166,7 +194,8 @@ public class BrewingCellarManager : MonoBehaviour
         
         Debug.Log($"SUCCESS! Brewed {newDrink.CustomName} with {_selectedIngredient1.IngredientName} and {_selectedIngredient2.IngredientName}. Base Value: {newDrink.BaseDrinkValue}");
 
-        // Reset the UI so the player can brew again
+        // Hide the popup and clear the center slots so the player can brew again
+        _namingPopupPanel.SetActive(false);
         ClearSelectedSlots();
     }
 
