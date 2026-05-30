@@ -189,7 +189,12 @@ public class BrewingCellarManager : MonoBehaviour
         _namingPopupPanel.SetActive(false);
         ClearSelectedSlots();
 
-        // TODO: Visually turn off the View_BrewingCellar panel and turn on the View_DesignStudio panel
+        // --- TRANSITION LOGIC ---
+        // Use the UIManager to switch to the design studio
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.SwitchView((int)ViewState.DesignStudio);
+        }
     }
 
     private void ClearSelectedSlots()

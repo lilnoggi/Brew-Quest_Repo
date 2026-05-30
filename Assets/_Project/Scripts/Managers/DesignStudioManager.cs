@@ -30,6 +30,11 @@ public class DesignStudioManager : MonoBehaviour
     [SerializeField] private Transform _decalGridContent;
     [SerializeField] private GameObject _decalSlotPrefab;
 
+    [Header("Flow Control UI")]
+    [SerializeField] private GameObject _containerVesselArrows; // Parent holding the arrow buttons
+    [SerializeField] private GameObject _buttonConfirmVessel; // Button to confirm cup type
+    [SerializeField] private GameObject _containerDecalSystem; // Parent holding the decal tabs and decal inventory
+
     private int _selectedDecalIndex = 0; // Tracks the player's final choice for the CustomBrew save data
 
     // This tracks exactly which shape the player is looking at.
@@ -157,7 +162,7 @@ public class DesignStudioManager : MonoBehaviour
         _pendingBrewName = brewName;
         _pendingBaseValue = baseValue;
 
-        // Reset the UI to defaults
+        // Reset the UI to Step 1: Vessel Selection
         _currentVesselIndex = 0;
         UpdateVesselVisibility();
 
@@ -165,7 +170,35 @@ public class DesignStudioManager : MonoBehaviour
         _appliedDecalImage.sprite = null;
         _appliedDecalImage.color = new Color(1,1,1,0); // Hide decal
 
-        // Load default tab
+        // Setup the UI Flow
+        _containerVesselArrows.SetActive(true);
+        _buttonConfirmVessel.SetActive(true);
+        _containerDecalSystem.SetActive(false); // Hide the decals
+
+        // Ensure spinning is ON
+        AutoSpinner[] spinners = FindObjectsByType<AutoSpinner>();
+        foreach(var spinner in spinners)
+        {
+            spinner.enabled = true;
+        }
+    }
+
+    // Attatch to select cup button
+    public void ConfirmVesselSelection()
+    {
+        // Move to Step 2: Decal Selection
+        _containerVesselArrows.SetActive(false);
+        _buttonConfirmVessel.SetActive(false);
+        _containerDecalSystem.SetActive(true);
+
+        // Stop the spinning so the decal can be placed
+        AutoSpinner[] spinners = FindObjectsByType<AutoSpinner>();
+        foreach(var spinner in spinners)
+        {
+            spinner.enabled = false;
+        }
+
+        // Load the default decal tab
         LoadDecalCategory(DecalCategory.Nature);
     }
 
@@ -187,5 +220,12 @@ public class DesignStudioManager : MonoBehaviour
         }
 
         Debug.Log($"DESIGN COMPLETE! Added {_pendingBrewName} to the Tavern!");
+
+        // ---  TRANSITION LOGIC ---
+        // Use the UIManager to switch to return the the Tavern Floor
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.SwitchView((int)ViewState.TavernFloor);
+        }
     }
 }
