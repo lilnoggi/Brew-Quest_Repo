@@ -209,5 +209,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9571986a8d88f2e45b1a72a6542e06b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
-  _ingredientIcon: {fileID: 2326031450776117069}
+  _slotIcon: {fileID: 2326031450776117069}
   _slotButton: {fileID: 991128789350402017}

@@ -175,28 +175,21 @@ public class BrewingCellarManager : MonoBehaviour
         {
             finalName = "Nameless Brew";
 
-            // FUTURE: Depending on the ingredients used, give a name that relates to the brew.
+            // FUTURE: Depending on the ingredients used, give a default name that relates to the brew.
         }
 
-        // Create the final drink using the held value
-        CustomBrew newDrink = new CustomBrew(finalName, _pendingBaseValue, 0, 0);
-
-        // Save the new drink to the save system (this will be expanded later to include the actual recipe and not just the resulting drink)
-        SaveSystem.Instance.CurrentProfile.savedBrewsList.Add(newDrink);
-        SaveSystem.Instance.SaveGameProgress(); // Save immediately to ensure the new brew is stored
-
-        // Tell the Tavern Menu to refresh so the new brew appears on tap right away
-        BrewMenuManager menuManager = FindAnyObjectByType<BrewMenuManager>();
-        if (menuManager != null)
+        // Find the Design Studio Manager and pass the data over
+        DesignStudioManager designManager = FindAnyObjectByType<DesignStudioManager>();
+        if (designManager != null)
         {
-            menuManager.RefreshMenu();
+            designManager.StartDesignProcess(finalName, _pendingBaseValue);
         }
-        
-        Debug.Log($"SUCCESS! Brewed {newDrink.CustomName} with {_selectedIngredient1.IngredientName} and {_selectedIngredient2.IngredientName}. Base Value: {newDrink.BaseDrinkValue}");
 
         // Hide the popup and clear the center slots so the player can brew again
         _namingPopupPanel.SetActive(false);
         ClearSelectedSlots();
+
+        // TODO: Visually turn off the View_BrewingCellar panel and turn on the View_DesignStudio panel
     }
 
     private void ClearSelectedSlots()
