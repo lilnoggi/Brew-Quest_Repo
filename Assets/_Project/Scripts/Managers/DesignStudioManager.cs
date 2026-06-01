@@ -41,6 +41,9 @@ public class DesignStudioManager : MonoBehaviour
     // It will directly map to CustomBrew._bottleShapeIndex
     private int _currentVesselIndex = 0;
 
+    // Hold the chosen colour temporarily
+    private Color _selectedVesselColour = Color.white;
+
     // =======================================================================================================
 
     private void Start()
@@ -206,7 +209,7 @@ public class DesignStudioManager : MonoBehaviour
     public void FinaliseBrew()
     {
         // Create the final drink with ALL the data
-        CustomBrew newDrink = new CustomBrew(_pendingBrewName, _pendingBaseValue, _currentVesselIndex, _selectedDecalIndex);
+        CustomBrew newDrink = new CustomBrew(_pendingBrewName, _pendingBaseValue, _currentVesselIndex, _selectedVesselColour, _selectedDecalIndex);
     
         // Save it
         SaveSystem.Instance.CurrentProfile.savedBrewsList.Add(newDrink);

@@ -46,14 +46,14 @@ public class CustomBrew
 
     // --- Constructor ---
     // This is called exactly when the player hits "Finish" in the design studio
-    public CustomBrew(string name, double calculatedBase, int bottleShape, int decal)
+    public CustomBrew(string name, double calculatedBase, int bottleShape, Color vesselColour, int decal)
     {
         _brewID = Guid.NewGuid().ToString(); // Automatically generate a unique ID for this brew
         _customName = name;
         _currentLevel = 1; // Always starts at level 1
         _baseDrinkValue = calculatedBase;
         _bottleShapeIndex = bottleShape;
-        _vesselColour = VesselColour;
+        _vesselColour = vesselColour;
         _decalIndex = decal;
         _isUnlockedOnTap = true; // Automatically goes on tap when created
     }
