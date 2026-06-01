@@ -155,6 +155,22 @@ public class DesignStudioManager : MonoBehaviour
         LoadDecalCategory(DecalCategory.Crests);
     }
 
+    // --- COLOUR SWATCH HOOKS ---
+    public void OnClickColourRed()
+    {
+        SetVesselColour(Color.red);
+    }
+
+    public void OnClickColourGreen()
+    {
+        SetVesselColour(Color.green);
+    }
+
+    public void OnClickColourBlue()
+    {
+        SetVesselColour(Color.blue);
+    }
+
     // =====================================================================
     // --- PIPELINE LOGIC ---
     // =====================================================================
@@ -208,8 +224,10 @@ public class DesignStudioManager : MonoBehaviour
     // Attach this to the final "FINISH BREW" in the design studio
     public void FinaliseBrew()
     {
+        double finalDrinkValue = _pendingBaseValue * CalculateDesignMultiplier();
+
         // Create the final drink with ALL the data
-        CustomBrew newDrink = new CustomBrew(_pendingBrewName, _pendingBaseValue, _currentVesselIndex, _selectedVesselColour, _selectedDecalIndex);
+        CustomBrew newDrink = new CustomBrew(_pendingBrewName, finalDrinkValue, _currentVesselIndex, _selectedVesselColour, _selectedDecalIndex);
     
         // Save it
         SaveSystem.Instance.CurrentProfile.savedBrewsList.Add(newDrink);
@@ -230,5 +248,68 @@ public class DesignStudioManager : MonoBehaviour
         {
             UIManager.Instance.SwitchView((int)ViewState.TavernFloor);
         }
+    }
+
+    // --- COLOUR LOGIC ---
+    // Call this from UI Buttons in the Design Studio
+    // Pass the specific colour wanted (e.g., Red, Blue, Green) via the Inspector
+    public void SetVesselColour(Color chosenColour)
+    {
+        _selectedVesselColour = chosenColour;
+
+        // Find the currently active vessel model and change its colour
+        GameObject activeVessel = _vesselModels[_currentVesselIndex];
+
+        // Grab the MeshRenderer and change the material colour
+        MeshRenderer renderer = activeVessel.GetComponent<MeshRenderer>();
+        if (renderer != null)
+        {
+            // Assuming the material has a "_BaseColor" property (like URP Lit Shader)
+            renderer.material.SetColor("_BaseColor", chosenColour);
+        }
+    }
+
+    // --- VALUE CALCULATION LOGIC ---
+    private double CalculateDesignMultiplier()
+    {
+        double multiplier = 1.0; // Start with a base multiplier of 1 (no change)
+
+        // Vessel Multipliers (e.g., Index 0 is Tankard, Index 1 is Bottle)
+        switch (_currentVesselIndex)
+        {
+            case 0: // e.g., Standard Tankard
+                multiplier += 0.0; // No change for the basic tankard
+                break;
+            case 1: // e.g., Standard Bottle
+                multiplier += 0.0; // No change for the basic bottle
+                break;
+            case 2: // e.g., Standard Goblet
+                multiplier += 0.05;
+                break;
+            default:
+                multiplier += 0.1;
+                break;
+        }
+
+        // Decal Multipliers (e.g., check the category of the chosen decal)
+        if (_selectedDecalIndex >= 0 && _selectedDecalIndex < _masterDecalDatabase.Count)
+        {
+            DecalCategory chosenCategory = _masterDecalDatabase[_selectedDecalIndex].category;
+
+            switch (chosenCategory)
+            {
+                case DecalCategory.Nature:
+                    multiplier += 0.1; // + 10%
+                    break;
+                case DecalCategory.Crests:
+                    multiplier += 0.2; // + 20%
+                    break;
+                case DecalCategory.Arcane:
+                    multiplier += 0.15; // + 15%
+                    break;
+            }
+        }
+
+        return multiplier;
     }
 }
