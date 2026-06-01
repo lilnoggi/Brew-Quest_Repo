@@ -34,12 +34,16 @@ public class DesignStudioManager : MonoBehaviour
     [SerializeField] private GameObject _containerVesselArrows; // Parent holding the arrow buttons
     [SerializeField] private GameObject _buttonConfirmVessel; // Button to confirm cup type
     [SerializeField] private GameObject _containerDecalSystem; // Parent holding the decal tabs and decal inventory
+    [SerializeField] private GameObject _containerColourPalette; // Parent holding the colour swatch buttons
 
     private int _selectedDecalIndex = 0; // Tracks the player's final choice for the CustomBrew save data
 
     // This tracks exactly which shape the player is looking at.
     // It will directly map to CustomBrew._bottleShapeIndex
     private int _currentVesselIndex = 0;
+
+    // Hold the chosen colour temporarily
+    private Color _selectedVesselColour = Color.white;
 
     // =======================================================================================================
 
@@ -152,6 +156,22 @@ public class DesignStudioManager : MonoBehaviour
         LoadDecalCategory(DecalCategory.Crests);
     }
 
+    // --- COLOUR SWATCH HOOKS ---
+    public void OnClickColourRed()
+    {
+        SetVesselColour(Color.red);
+    }
+
+    public void OnClickColourGreen()
+    {
+        SetVesselColour(Color.green);
+    }
+
+    public void OnClickColourBlue()
+    {
+        SetVesselColour(Color.blue);
+    }
+
     // =====================================================================
     // --- PIPELINE LOGIC ---
     // =====================================================================
@@ -173,6 +193,7 @@ public class DesignStudioManager : MonoBehaviour
         // Setup the UI Flow
         _containerVesselArrows.SetActive(true);
         _buttonConfirmVessel.SetActive(true);
+        _containerColourPalette.SetActive(true); // Show the colour options
         _containerDecalSystem.SetActive(false); // Hide the decals
 
         // Ensure spinning is ON
@@ -189,6 +210,7 @@ public class DesignStudioManager : MonoBehaviour
         // Move to Step 2: Decal Selection
         _containerVesselArrows.SetActive(false);
         _buttonConfirmVessel.SetActive(false);
+        _containerColourPalette.SetActive(false); // Hide the colour options
         _containerDecalSystem.SetActive(true);
 
         // Stop the spinning so the decal can be placed
@@ -205,8 +227,10 @@ public class DesignStudioManager : MonoBehaviour
     // Attach this to the final "FINISH BREW" in the design studio
     public void FinaliseBrew()
     {
+        double finalDrinkValue = _pendingBaseValue * CalculateDesignMultiplier();
+
         // Create the final drink with ALL the data
-        CustomBrew newDrink = new CustomBrew(_pendingBrewName, _pendingBaseValue, _currentVesselIndex, _selectedDecalIndex);
+        CustomBrew newDrink = new CustomBrew(_pendingBrewName, finalDrinkValue, _currentVesselIndex, _selectedVesselColour, _selectedDecalIndex);
     
         // Save it
         SaveSystem.Instance.CurrentProfile.savedBrewsList.Add(newDrink);
@@ -227,5 +251,68 @@ public class DesignStudioManager : MonoBehaviour
         {
             UIManager.Instance.SwitchView((int)ViewState.TavernFloor);
         }
+    }
+
+    // --- COLOUR LOGIC ---
+    // Call this from UI Buttons in the Design Studio
+    // Pass the specific colour wanted (e.g., Red, Blue, Green) via the Inspector
+    public void SetVesselColour(Color chosenColour)
+    {
+        _selectedVesselColour = chosenColour;
+
+        // Find the currently active vessel model and change its colour
+        GameObject activeVessel = _vesselModels[_currentVesselIndex];
+
+        // Grab the MeshRenderer and change the material colour
+        MeshRenderer renderer = activeVessel.GetComponent<MeshRenderer>();
+        if (renderer != null)
+        {
+            // Assuming the material has a "_BaseColor" property (like URP Lit Shader)
+            renderer.material.SetColor("_BaseColor", chosenColour);
+        }
+    }
+
+    // --- VALUE CALCULATION LOGIC ---
+    private double CalculateDesignMultiplier()
+    {
+        double multiplier = 1.0; // Start with a base multiplier of 1 (no change)
+
+        // Vessel Multipliers (e.g., Index 0 is Tankard, Index 1 is Bottle)
+        switch (_currentVesselIndex)
+        {
+            case 0: // e.g., Standard Tankard
+                multiplier += 0.0; // No change for the basic tankard
+                break;
+            case 1: // e.g., Standard Bottle
+                multiplier += 0.0; // No change for the basic bottle
+                break;
+            case 2: // e.g., Standard Goblet
+                multiplier += 0.05;
+                break;
+            default:
+                multiplier += 0.1;
+                break;
+        }
+
+        // Decal Multipliers (e.g., check the category of the chosen decal)
+        if (_selectedDecalIndex >= 0 && _selectedDecalIndex < _masterDecalDatabase.Count)
+        {
+            DecalCategory chosenCategory = _masterDecalDatabase[_selectedDecalIndex].category;
+
+            switch (chosenCategory)
+            {
+                case DecalCategory.Nature:
+                    multiplier += 0.1; // + 10%
+                    break;
+                case DecalCategory.Crests:
+                    multiplier += 0.2; // + 20%
+                    break;
+                case DecalCategory.Arcane:
+                    multiplier += 0.15; // + 15%
+                    break;
+            }
+        }
+
+        return multiplier;
     }
 }
