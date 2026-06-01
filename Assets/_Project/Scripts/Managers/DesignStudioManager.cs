@@ -34,6 +34,7 @@ public class DesignStudioManager : MonoBehaviour
     [SerializeField] private GameObject _containerVesselArrows; // Parent holding the arrow buttons
     [SerializeField] private GameObject _buttonConfirmVessel; // Button to confirm cup type
     [SerializeField] private GameObject _containerDecalSystem; // Parent holding the decal tabs and decal inventory
+    [SerializeField] private GameObject _containerColourPalette; // Parent holding the colour swatch buttons
 
     private int _selectedDecalIndex = 0; // Tracks the player's final choice for the CustomBrew save data
 
@@ -192,6 +193,7 @@ public class DesignStudioManager : MonoBehaviour
         // Setup the UI Flow
         _containerVesselArrows.SetActive(true);
         _buttonConfirmVessel.SetActive(true);
+        _containerColourPalette.SetActive(true); // Show the colour options
         _containerDecalSystem.SetActive(false); // Hide the decals
 
         // Ensure spinning is ON
@@ -208,6 +210,7 @@ public class DesignStudioManager : MonoBehaviour
         // Move to Step 2: Decal Selection
         _containerVesselArrows.SetActive(false);
         _buttonConfirmVessel.SetActive(false);
+        _containerColourPalette.SetActive(false); // Hide the colour options
         _containerDecalSystem.SetActive(true);
 
         // Stop the spinning so the decal can be placed

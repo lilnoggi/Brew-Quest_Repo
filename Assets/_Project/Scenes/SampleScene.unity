@@ -6166,6 +6166,7 @@ MonoBehaviour:
   _containerVesselArrows: {fileID: 44112599}
   _buttonConfirmVessel: {fileID: 1661330353}
   _containerDecalSystem: {fileID: 1123104189}
+  _containerColourPalette: {fileID: 221392296}
 --- !u!1 &1275257967
 GameObject:
   m_ObjectHideFlags: 0
