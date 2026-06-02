@@ -15,10 +15,6 @@ public class BrewingCellarManager : MonoBehaviour
     [SerializeField] private GameObject _inventorySlotPrefab;
     [Tooltip("How many slots should make up the empty grid (e.g., 50 for a 5x10 grid).")]
     [SerializeField] private int _totalGridSize = 50;
-    [Tooltip("The Y position when the drawer is fully OPEN (usually 0)")]
-    [SerializeField] private float _drawerOpenYPosition = 0f;
-    [Tooltip("The Y position when the drawer is fully CLOSED (e.g. -1118)")]
-    [SerializeField] private float _drawerClosedYPosition = -1118f;
 
     [Header("Selected Ingredient Slots")]
     [SerializeField] private Image _uiSlot1Image; // Drag "Slot 1" Image here

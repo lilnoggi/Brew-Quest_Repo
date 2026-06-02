@@ -67,6 +67,6 @@ public class UIManager : MonoBehaviour
         }
 
         _currentViewState = (ViewState)targetViewIndex;
-        Debug.Log($"Switched to view: {_currentViewState}");
+        // Debug.Log($"Switched to view: {_currentViewState}");
     }
 }

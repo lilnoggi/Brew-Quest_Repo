@@ -78,6 +78,13 @@ public class ShopManager : MonoBehaviour
             // Refresh shop
             PopulateShop();
 
+            // Refresh the 3D Environment
+            TavernVisualManager visualManager = FindAnyObjectByType<TavernVisualManager>();
+            if (visualManager != null)
+            {
+                visualManager.UpdateVisuals();
+            }
+
             Debug.Log($"Purchased upgrade: {upgradeToBuy.UpgradeName}");
         }
         else

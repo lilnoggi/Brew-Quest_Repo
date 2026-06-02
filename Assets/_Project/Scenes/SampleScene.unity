@@ -590,6 +590,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56174521}
   m_CullTransparentMesh: 1
+--- !u!1 &63639396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4790848797096238029, guid: adfb3a9413807204384c44e52b481d79, type: 3}
+  m_PrefabInstance: {fileID: 1991505960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &95925266
 GameObject:
   m_ObjectHideFlags: 0
@@ -5434,6 +5439,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864604162}
   m_CullTransparentMesh: 1
+--- !u!1 &938953249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4916252497096522286, guid: adfb3a9413807204384c44e52b481d79, type: 3}
+  m_PrefabInstance: {fileID: 1991505960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &953811390
 GameObject:
   m_ObjectHideFlags: 0
@@ -6981,6 +6991,7 @@ GameObject:
   - component: {fileID: 1269801129}
   - component: {fileID: 1269801130}
   - component: {fileID: 1269801131}
+  - component: {fileID: 1269801132}
   m_Layer: 0
   m_Name: MANAGERS
   m_TagString: Untagged
@@ -7105,8 +7116,6 @@ MonoBehaviour:
   _gridContentContainer: {fileID: 130900052}
   _inventorySlotPrefab: {fileID: 4427351429443535582, guid: 3a678635138089c48a2c1f8893d765c4, type: 3}
   _totalGridSize: 50
-  _drawerOpenYPosition: 0
-  _drawerClosedYPosition: -1300
   _uiSlot1Image: {fileID: 1729417729}
   _uiSlot2Image: {fileID: 534441483}
   _mixButton: {fileID: 1367282992}
@@ -7185,6 +7194,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatronSimulationManager
   _basePatronCapacity: 2
+--- !u!114 &1269801132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269801121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746b95b483eada34791ca77edb0f5f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TavernVisualManager
+  _visualLinks:
+  - UpgradeName: Basic Table
+    VisualGroup: {fileID: 63639396}
+  - UpgradeName: Wooden Chair
+    VisualGroup: {fileID: 938953249}
 --- !u!1 &1275257967
 GameObject:
   m_ObjectHideFlags: 0
