@@ -93,5 +93,13 @@ public class ShopManager : MonoBehaviour
         // The actual implementation would depend on how the tavern's stats are structured in the game.
         // For example:
         // if (upgrade.Type == UpgradeType.Capacity) { PatronManager.Instance.MaxCapacity += (int)upgrade.ModifierValue; }
+
+        if (upgrade.UpgradeType == UpgradeType.Capacity)
+        {
+            if (PatronSimulationManager.Instance != null)
+            {
+                PatronSimulationManager.Instance.RecalculatePatronCapacity();
+            }
+        }
     }
 }

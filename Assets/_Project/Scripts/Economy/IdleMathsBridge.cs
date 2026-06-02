@@ -33,7 +33,11 @@ public static class IdleMathsBridge
         if (currentLevel >= 50) multiplier *= 2.0;
         if (currentLevel >= 100) multiplier *= 4.0;
 
-        return baseProduction * multiplier;
+        // Apply the capacity multiplier: More steats = more revenue
+        // Ensure it defaults to at least 1 so it doesn't break if the manager is not loaded
+        int currentCapacity = PatronSimulationManager.Instance != null ? PatronSimulationManager.Instance.CurrentMaxPatronCapacity : 1;
+
+        return (baseProduction * multiplier) * currentCapacity;
     }
     
     // ========================================
