@@ -13,6 +13,9 @@ public class GameSaveData
     // This list will hold every CustomBrew the player ever creates
     public List<CustomBrew> savedBrewsList;
 
+    // This list will hold the names of all purchased upgrades, which can be used to determine which upgrades are active and which should be shown in the shop
+    public List<string> purchasedUpgradesList;
+
     // Constructor sets the default values for a brand new player
     public GameSaveData()
     {
@@ -21,5 +24,6 @@ public class GameSaveData
         playerLevel = 1;
         lastSavedTimestamp = DateTime.UtcNow.ToString();
         savedBrewsList = new List<CustomBrew>();
+        purchasedUpgradesList = new List<string>();
     }
 }
