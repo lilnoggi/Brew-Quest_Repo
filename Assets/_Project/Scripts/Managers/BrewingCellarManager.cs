@@ -10,7 +10,7 @@ public class BrewingCellarManager : MonoBehaviour
     [SerializeField] private List<IngredientData> _masterIngredientDatabase = new List<IngredientData>();
 
     [Header("Drawer UI Setup")]
-    [SerializeField] private RectTransform _drawerPanel;
+    [SerializeField] private SlidingMenuUI _ingredientDrawerSlider; // Reference to the SlidingMenuUI component that controls the drawer animation
     [SerializeField] private Transform _gridContentContainer;
     [SerializeField] private GameObject _inventorySlotPrefab;
     [Tooltip("How many slots should make up the empty grid (e.g., 50 for a 5x10 grid).")]
@@ -31,8 +31,6 @@ public class BrewingCellarManager : MonoBehaviour
 
     // Temporarly hold the value of the mixed brew while the player types the name
     private double _pendingBaseValue;
-
-    private bool _isDrawerOpen = false;
 
     // --- TRACK WHAT INGREDIENTS THE PLAYER HAS SELECTED FOR BREWING ---
     private IngredientData _selectedIngredient1;
@@ -71,48 +69,6 @@ public class BrewingCellarManager : MonoBehaviour
     }
 
     // =====================================================================
-    // --- DRAWER ANIMATION LOGIC ---
-    // ===================================================================== 
-
-    /// <summary>
-    /// Attatch this to the "Open Ingredients" Button
-    /// </summary>
-    public void ToggleDrawer()
-    {
-        _isDrawerOpen = !_isDrawerOpen; // Flip the bool to track the new state
-
-        // Stop any current sliding animations
-        StopAllCoroutines();
-
-        // Target Y position: 0 is fully on screen, -800 is hidden off the bottom
-        float targetY = _isDrawerOpen ? _drawerOpenYPosition : _drawerClosedYPosition;
-
-        StartCoroutine(SlideDrawerRoutine(targetY));
-    }
-
-    private IEnumerator SlideDrawerRoutine(float targetY)
-    {
-        float duration = 0.3f; // Duration of the slide in 0.3 seconds
-        float timeElapsed = 0f;
-
-        Vector2 startingPos = _drawerPanel.anchoredPosition;
-        Vector2 targetPos = new Vector2(startingPos.x, targetY);
-
-        while (timeElapsed < duration)
-        {
-            timeElapsed += Time.deltaTime;
-            
-            // Lerp smoothly moves the panel from its start position to the target
-            _drawerPanel.anchoredPosition = Vector2.Lerp(startingPos, targetPos, timeElapsed / duration);
-
-            yield return null; // Wait until next frame
-        }
-
-        // Ensure it ends exactly at the target position
-        _drawerPanel.anchoredPosition = targetPos;
-    }
-
-    // =====================================================================
     // --- GAMEPLAY LOGIC ---
     // =====================================================================
 
@@ -133,9 +89,9 @@ public class BrewingCellarManager : MonoBehaviour
             _uiSlot2Image.color = Color.white; // Ensure the image is visible (in case it was greyed out)
 
             // Both slots are filled, close the drawer automatically
-            if (_isDrawerOpen)
+            if (_ingredientDrawerSlider != null)
             {
-                ToggleDrawer();
+                _ingredientDrawerSlider.ForceClose();
             }
         }
         else
