@@ -22,6 +22,9 @@ public class CustomBrew
     [Tooltip("An integer representing which 3D bottle shape the player chose.")]
     [SerializeField] private int _bottleShapeIndex;
 
+    [Tooltip("The colour applied to the vessel material.")]
+    [SerializeField] private Color _vesselColour;
+
     [Tooltip("An integer representing which label decal the player chose.")]
     [SerializeField] private int _decalIndex;
 
@@ -37,18 +40,20 @@ public class CustomBrew
     public int CurrentLevel { get => _currentLevel; set => _currentLevel = value; }
     public double BaseDrinkValue => _baseDrinkValue;
     public int BottleShapeIndex => _bottleShapeIndex;
+    public Color VesselColour => _vesselColour;
     public int DecalIndex => _decalIndex;
     public bool IsUnlockedOnTap { get => _isUnlockedOnTap; set => _isUnlockedOnTap = value; }
 
     // --- Constructor ---
     // This is called exactly when the player hits "Finish" in the design studio
-    public CustomBrew(string name, double calculatedBase, int bottleShape, int decal)
+    public CustomBrew(string name, double calculatedBase, int bottleShape, Color vesselColour, int decal)
     {
         _brewID = Guid.NewGuid().ToString(); // Automatically generate a unique ID for this brew
         _customName = name;
         _currentLevel = 1; // Always starts at level 1
         _baseDrinkValue = calculatedBase;
         _bottleShapeIndex = bottleShape;
+        _vesselColour = vesselColour;
         _decalIndex = decal;
         _isUnlockedOnTap = true; // Automatically goes on tap when created
     }
