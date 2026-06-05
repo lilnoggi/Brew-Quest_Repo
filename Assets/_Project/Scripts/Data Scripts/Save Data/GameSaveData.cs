@@ -16,6 +16,9 @@ public class GameSaveData
     // This list will hold the names of all purchased upgrades, which can be used to determine which upgrades are active and which should be shown in the shop
     public List<string> purchasedUpgradesList;
 
+    // --- INGREDIENT INVENTORY ---
+    public List<string> ownedIngredients; // List of ingredient names the player owns, which can be used to populate the inventory and determine what can be used in brews
+
     // Constructor sets the default values for a brand new player
     public GameSaveData()
     {
@@ -25,5 +28,6 @@ public class GameSaveData
         lastSavedTimestamp = DateTime.UtcNow.ToString();
         savedBrewsList = new List<CustomBrew>();
         purchasedUpgradesList = new List<string>();
+        ownedIngredients = new List<string>();
     }
 }

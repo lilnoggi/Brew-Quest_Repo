@@ -5,9 +5,10 @@ using UnityEngine;
 public class VendorData : ScriptableObject
 {
     [Header("Vendor Information")]
-    public string vendorName;
-    public Sprite vendorPortrait;
-    public string vendorDescription;
+    public string VendorName;
+    public Sprite VendorPortrait;
+    public string VendorDescription;
+    [TextArea(3, 10)] public string WelcomeDialogue;
 
     [Header("Unlock Requirements")]
     public int RequiredPlayerLevel = 1;
