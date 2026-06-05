@@ -24,6 +24,9 @@ public class IngredientData : ScriptableObject
     [Tooltip("The flat gold value this ingredient adds to the baseline price of a custom brew.")]
     [SerializeField] private int _baseValueContribution; 
 
+    // How much Gold it costs to buy this ingredient from a vendor.
+    [SerializeField] private double _purchaseCost;
+
     // ===================================================================================================
 
     // --- Public Read-Only Properties ---
@@ -33,4 +36,5 @@ public class IngredientData : ScriptableObject
     public FlavourProfile FlavourProfile => _flavourProfile;
     public int BaseValueContribution => _baseValueContribution;
     public Sprite Icon => _icon;
+    public double PurchaseCost => _purchaseCost;
 }
