@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad40ef463f447e046bcb04768d54fec4, type: 3}
+  m_Name: BrewTap1
+  m_EditorClassIdentifier: Assembly-CSharp::TavernUpgradeData
+  _upgradeName: Bar Tap
+  _upgradeDescription: A new tap.
+  _upgradeBaseCost: 15
+  _upgradeType: 0
+  _upgradeModifierValue: 0
+  _prerequisiteUpgrade: {fileID: 11400000, guid: 7f4465908099cde4faba9d98b3fac9e1, type: 2}

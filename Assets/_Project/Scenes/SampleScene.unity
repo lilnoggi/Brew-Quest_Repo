@@ -6846,6 +6846,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233574700}
   m_CullTransparentMesh: 1
+--- !u!1 &1246875364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3836866856436534690, guid: adfb3a9413807204384c44e52b481d79, type: 3}
+  m_PrefabInstance: {fileID: 1991505960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1258938330
 GameObject:
   m_ObjectHideFlags: 0
@@ -7186,6 +7191,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8aec589fa1bb67943bb64042cd0bb2b0, type: 2}
   - {fileID: 11400000, guid: 5d099d7c62206ce4abd3ef8a7d629f5c, type: 2}
   - {fileID: 11400000, guid: fe33a8d0315ec24418611ee516d9b6be, type: 2}
+  - {fileID: 11400000, guid: 86891ddf1b1e262458a1cd5e17a44a4d, type: 2}
+  - {fileID: 11400000, guid: 7b0a4d5fc978ed14cb839832b794ea66, type: 2}
   _shopContentContainer: {fileID: 1336458917}
   _shopCardPrefab: {fileID: 7685390385476654606, guid: 12088e393f72ee24dab6f664ccfadca3, type: 3}
 --- !u!114 &1269801131
@@ -7222,6 +7229,10 @@ MonoBehaviour:
     VisualGroup: {fileID: 1191380964}
   - UpgradeName: Wooden Chairs 2
     VisualGroup: {fileID: 1568647342}
+  - UpgradeName: Bar Stools 1
+    VisualGroup: {fileID: 1344461426}
+  - UpgradeName: Bar Tap
+    VisualGroup: {fileID: 1246875364}
 --- !u!1 &1275257967
 GameObject:
   m_ObjectHideFlags: 0
@@ -7551,6 +7562,11 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1344461426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7571795732940611622, guid: adfb3a9413807204384c44e52b481d79, type: 3}
+  m_PrefabInstance: {fileID: 1991505960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1359475525
 GameObject:
   m_ObjectHideFlags: 0
