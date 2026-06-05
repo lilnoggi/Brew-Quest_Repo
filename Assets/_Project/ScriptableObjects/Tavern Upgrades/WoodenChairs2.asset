@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad40ef463f447e046bcb04768d54fec4, type: 3}
-  m_Name: BasicTable
+  m_Name: WoodenChairs2
   m_EditorClassIdentifier: Assembly-CSharp::TavernUpgradeData
-  _upgradeName: Basic Table
-  _upgradeDescription: A basic table.
-  _upgradeBaseCost: 250
+  _upgradeName: Wooden Chairs 2
+  _upgradeDescription: A wooden chair.
+  _upgradeBaseCost: 15
   _upgradeType: 0
   _upgradeModifierValue: 0
-  _prerequisiteUpgrade: {fileID: 0}
+  _prerequisiteUpgrade: {fileID: 11400000, guid: 5d099d7c62206ce4abd3ef8a7d629f5c, type: 2}

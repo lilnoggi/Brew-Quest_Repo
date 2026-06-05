@@ -6571,6 +6571,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130085839}
   m_CullTransparentMesh: 1
+--- !u!1 &1191380964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4750979338661981853, guid: adfb3a9413807204384c44e52b481d79, type: 3}
+  m_PrefabInstance: {fileID: 1991505960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1213279656
 GameObject:
   m_ObjectHideFlags: 0
@@ -7179,6 +7184,8 @@ MonoBehaviour:
   _availableUpgrades:
   - {fileID: 11400000, guid: c23a1258d90779047905d05eae6950d8, type: 2}
   - {fileID: 11400000, guid: 8aec589fa1bb67943bb64042cd0bb2b0, type: 2}
+  - {fileID: 11400000, guid: 5d099d7c62206ce4abd3ef8a7d629f5c, type: 2}
+  - {fileID: 11400000, guid: fe33a8d0315ec24418611ee516d9b6be, type: 2}
   _shopContentContainer: {fileID: 1336458917}
   _shopCardPrefab: {fileID: 7685390385476654606, guid: 12088e393f72ee24dab6f664ccfadca3, type: 3}
 --- !u!114 &1269801131
@@ -7207,10 +7214,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TavernVisualManager
   _visualLinks:
-  - UpgradeName: Basic Table
+  - UpgradeName: Basic Table 1
     VisualGroup: {fileID: 63639396}
-  - UpgradeName: Wooden Chair
+  - UpgradeName: Wooden Chairs 1
     VisualGroup: {fileID: 938953249}
+  - UpgradeName: Basic Table 2
+    VisualGroup: {fileID: 1191380964}
+  - UpgradeName: Wooden Chairs 2
+    VisualGroup: {fileID: 1568647342}
 --- !u!1 &1275257967
 GameObject:
   m_ObjectHideFlags: 0
@@ -8872,6 +8883,11 @@ Transform:
   - {fileID: 1113724265}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1568647342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6445590565561595427, guid: adfb3a9413807204384c44e52b481d79, type: 3}
+  m_PrefabInstance: {fileID: 1991505960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1586489016
 GameObject:
   m_ObjectHideFlags: 0
