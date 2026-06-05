@@ -87,7 +87,7 @@ public class BrewingCellarManager : MonoBehaviour
             // Both slots are filled, close the drawer automatically
             if (_ingredientDrawerSlider != null)
             {
-                _ingredientDrawerSlider.ForceClose();
+                _ingredientDrawerSlider.CloseMenu();
             }
         }
         else

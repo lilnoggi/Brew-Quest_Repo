@@ -37,7 +37,22 @@ public class SlidingMenuUI : MonoBehaviour
         _slideCoroutine = StartCoroutine(SlideTo(targetPosY));
     }
 
-    public void ForceClose()
+    public void OpenMenu()
+    {
+        if (!_isMenuVisible)
+        {
+            _isMenuVisible = true;
+
+            if (_slideCoroutine != null)
+            {
+                StopCoroutine(_slideCoroutine);
+            }
+
+            _slideCoroutine = StartCoroutine(SlideTo(_visiblePosY));
+        }
+    }
+
+    public void CloseMenu()
     {
         if (_isMenuVisible) // Only slide if it is currently open
         {
