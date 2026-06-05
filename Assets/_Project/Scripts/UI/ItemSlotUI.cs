@@ -11,13 +11,13 @@ public class ItemSlotUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _costText;
 
     private IngredientData _currentIngredient;
-    // private SupplierManager _supplierManager;
+    private SupplierManager _supplierManager;
 
     // Sets up the slot for a SHOP view (Shows price)
-    public void SetupForShop(IngredientData ingredient)
+    public void SetupForShop(IngredientData ingredient, SupplierManager supplier)
     {
         _currentIngredient = ingredient;
-        // _supplierManager = supplier;
+        _supplierManager = supplier;
 
         _itemIcon.sprite = ingredient.Icon;
         _itemIcon.enabled = true;
@@ -30,9 +30,10 @@ public class ItemSlotUI : MonoBehaviour
     }
 
     // Sets up the slot for an INVENTORY view (Hides price)
-    public void SetupForInventory(IngredientData ingredient)
+    public void SetupForInventory(IngredientData ingredient, SupplierManager supplier)
     {
         _currentIngredient = ingredient;
+        _supplierManager = supplier;
 
         _itemIcon.sprite = ingredient.Icon;
         _itemIcon.enabled = true;
