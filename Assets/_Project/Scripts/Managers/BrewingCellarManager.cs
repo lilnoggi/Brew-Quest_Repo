@@ -37,10 +37,10 @@ public class BrewingCellarManager : MonoBehaviour
     private void Start()
     {
         // Build the inventory grid the movement the game starts
-        InitialiseInventoryGrid();
+        RefreshInventoryGrid();
     }
 
-    private void InitialiseInventoryGrid()
+    public void RefreshInventoryGrid()
     {
         // Clear any placeholder items
         foreach (Transform child in _gridContentContainer)
@@ -75,7 +75,7 @@ public class BrewingCellarManager : MonoBehaviour
                     // If the ingredient was found set up the slot
                     if (foundIngredient != null)
                     {
-                        slotUI.SetupForInventory(foundIngredient, savedItem.quantity);
+                        slotUI.SetupForInventory(foundIngredient, savedItem.quantity, this);
                     }
                     else
                     {
@@ -165,9 +165,15 @@ public class BrewingCellarManager : MonoBehaviour
             designManager.StartDesignProcess(finalName, _pendingBaseValue);
         }
 
+        SaveSystem.Instance.RemoveIngredientFromInventory(_selectedIngredient1.IngredientName, 1);
+        SaveSystem.Instance.RemoveIngredientFromInventory(_selectedIngredient2.IngredientName, 1);
+
         // Hide the popup and clear the center slots so the player can brew again
         _namingPopupPanel.SetActive(false);
         ClearSelectedSlots();
+
+        // Refresh the grid so the numbers update visually
+        RefreshInventoryGrid();
 
         // --- TRANSITION LOGIC ---
         // Use the UIManager to switch to the design studio

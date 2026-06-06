@@ -3630,6 +3630,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1269801128}
+        m_TargetAssemblyTypeName: BrewingCellarManager, Assembly-CSharp
+        m_MethodName: RefreshInventoryGrid
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &473767668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8645,7 +8657,7 @@ MonoBehaviour:
     lastSavedTimestamp: 26/05/2026 23:46:49
     savedBrewsList: []
     purchasedUpgradesList: []
-    ownedIngredients: []
+    ownedIngredientsList: []
 --- !u!114 &1269801126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8708,7 +8720,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d917c7866f1a5074f9697ed59c176db1, type: 2}
   _ingredientDrawerSlider: {fileID: 0}
   _gridContentContainer: {fileID: 130900052}
-  _inventorySlotPrefab: {fileID: 4427351429443535582, guid: 3a678635138089c48a2c1f8893d765c4, type: 3}
+  _inventorySlotPrefab: {fileID: 1268410175561977683, guid: e7cbcd9ee4f616e4096b6bd2b35f563f, type: 3}
   _totalGridSize: 50
   _uiSlot1Image: {fileID: 1729417729}
   _uiSlot2Image: {fileID: 534441483}
@@ -13484,7 +13496,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 133843609}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -13,12 +13,14 @@ public class ItemSlotUI : MonoBehaviour
 
     private IngredientData _currentIngredient;
     private SupplierManager _supplierManager;
+    private BrewingCellarManager _brewingCellarManager;
 
     // Sets up the slot for a SHOP view (Shows price)
     public void SetupForShop(IngredientData ingredient, SupplierManager supplier)
     {
         _currentIngredient = ingredient;
         _supplierManager = supplier;
+        _brewingCellarManager = null;
 
         _itemIcon.sprite = ingredient.Icon;
         _itemIcon.enabled = true;
@@ -31,9 +33,11 @@ public class ItemSlotUI : MonoBehaviour
     }
 
     // Sets up the slot for an INVENTORY view (Hides price)
-    public void SetupForInventory(IngredientData ingredient, int currentQuantity)
+    public void SetupForInventory(IngredientData ingredient, int currentQuantity, BrewingCellarManager brewingCellarManager)
     {
         _currentIngredient = ingredient;
+        _supplierManager = null;
+        _brewingCellarManager = brewingCellarManager;
 
         _itemIcon.sprite = ingredient.Icon;
         _itemIcon.enabled = true;
@@ -93,7 +97,7 @@ public class ItemSlotUI : MonoBehaviour
         else if (_currentIngredient != null)
         {
             // This is an inventory slot, show details or allow selling
-            // Implement inventory interaction logic here
+           _brewingCellarManager.SelectIngredient(_currentIngredient);
         }
     }
 

@@ -111,4 +111,26 @@ public class SaveSystem : MonoBehaviour
         _currentProfileString.ownedIngredientsList.Add(new IngredientInventoryItem(ingredientName, amount));
         SaveGameProgress();
     }
+
+    public void RemoveIngredientFromInventory(string ingredientName, int amount)
+    {
+        // Search for ingredient
+        for (int i = 0; i < _currentProfileString.ownedIngredientsList.Count; i++)
+        {
+            if (_currentProfileString.ownedIngredientsList[i].ingredientName == ingredientName)
+            {
+                // Subtract the amount
+                _currentProfileString.ownedIngredientsList[i].quantity -= amount;
+
+                // If 0 or less, remove it from the list entirely
+                if (_currentProfileString.ownedIngredientsList[i].quantity <= 0)
+                {
+                    _currentProfileString.ownedIngredientsList.RemoveAt(i);
+                }
+
+                SaveGameProgress();
+                return;
+            }
+        }
+    }
 }
