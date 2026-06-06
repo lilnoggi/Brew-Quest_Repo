@@ -18,12 +18,37 @@ MonoBehaviour:
   WelcomeDialogue: Hello there! Welcome to my farm shop.
   RequiredPlayerLevel: 1
   UnlockCost: 0
-  ItemsForSale:
-  - {fileID: 11400000, guid: afc936005fd96f945a6e52a8f714d41f, type: 2}
-  - {fileID: 11400000, guid: 64a0d89e0e7054844b89b4ac62853499, type: 2}
-  - {fileID: 11400000, guid: 437d8edd8f5b5f24984042b89147e649, type: 2}
-  - {fileID: 11400000, guid: 95d555681cb082c4ca438a13aa3eb11d, type: 2}
-  - {fileID: 11400000, guid: 7c6dfcb68affb6543a32078dbb7ab818, type: 2}
-  - {fileID: 11400000, guid: 34a9e79562dbabf49ba5c95faf115b48, type: 2}
-  - {fileID: 11400000, guid: 9dffb7b4d5818334b9fa37442bd2444b, type: 2}
-  - {fileID: 11400000, guid: bd699f4351938d04ab8e77490b05bea7, type: 2}
+  MaxStockDisplay: 5
+  PotentialStockPool:
+  - Ingredient: {fileID: 11400000, guid: afc936005fd96f945a6e52a8f714d41f, type: 2}
+    ChanceToAppear: 100
+    MinPrice: 7
+    MaxPrice: 12
+  - Ingredient: {fileID: 11400000, guid: 64a0d89e0e7054844b89b4ac62853499, type: 2}
+    ChanceToAppear: 80
+    MinPrice: 6
+    MaxPrice: 15
+  - Ingredient: {fileID: 11400000, guid: 437d8edd8f5b5f24984042b89147e649, type: 2}
+    ChanceToAppear: 90
+    MinPrice: 5
+    MaxPrice: 10
+  - Ingredient: {fileID: 11400000, guid: 95d555681cb082c4ca438a13aa3eb11d, type: 2}
+    ChanceToAppear: 70
+    MinPrice: 9
+    MaxPrice: 18
+  - Ingredient: {fileID: 11400000, guid: 7c6dfcb68affb6543a32078dbb7ab818, type: 2}
+    ChanceToAppear: 100
+    MinPrice: 3
+    MaxPrice: 7
+  - Ingredient: {fileID: 11400000, guid: 34a9e79562dbabf49ba5c95faf115b48, type: 2}
+    ChanceToAppear: 60
+    MinPrice: 10
+    MaxPrice: 20
+  - Ingredient: {fileID: 11400000, guid: 9dffb7b4d5818334b9fa37442bd2444b, type: 2}
+    ChanceToAppear: 50
+    MinPrice: 8
+    MaxPrice: 18
+  - Ingredient: {fileID: 11400000, guid: bd699f4351938d04ab8e77490b05bea7, type: 2}
+    ChanceToAppear: 40
+    MinPrice: 9
+    MaxPrice: 20

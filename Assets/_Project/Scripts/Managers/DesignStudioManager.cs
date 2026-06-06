@@ -118,11 +118,11 @@ public class DesignStudioManager : MonoBehaviour
             {
                 GameObject newSlot = Instantiate(_decalSlotPrefab, _decalGridContent);
 
-                InventorySlotUI slotUI = newSlot.GetComponent<InventorySlotUI>();
+                ItemSlotUI slotUI = newSlot.GetComponent<ItemSlotUI>();
                 if (slotUI != null)
                 {
                     // Pass the sprite, its index in the master list, and a reference to this manager.
-                    slotUI.SetupForDecal(_masterDecalDatabase[i].DecalSprite, i, this);
+                    // slotUI.SetupForDecal(_masterDecalDatabase[i].DecalSprite, i, this);
                 }
             }
         }

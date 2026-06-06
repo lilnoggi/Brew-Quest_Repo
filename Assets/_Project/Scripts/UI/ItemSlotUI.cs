@@ -11,23 +11,28 @@ public class ItemSlotUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private TextMeshProUGUI _quantityText;
 
+    [Header("Vendor Settings")]
+    private double _currentOfferPrice; // Holds the specific price this vendor rolled today
+
     private IngredientData _currentIngredient;
     private SupplierManager _supplierManager;
     private BrewingCellarManager _brewingCellarManager;
 
     // Sets up the slot for a SHOP view (Shows price)
-    public void SetupForShop(IngredientData ingredient, SupplierManager supplier)
+    public void SetupForShop(IngredientData ingredient, SupplierManager supplier, double rolledPrice)
     {
         _currentIngredient = ingredient;
         _supplierManager = supplier;
         _brewingCellarManager = null;
+
+        _currentOfferPrice = rolledPrice;
 
         _itemIcon.sprite = ingredient.Icon;
         _itemIcon.enabled = true;
 
         // Turn ON the pricing group and set the cost text
         _pricingGroup.SetActive(true);
-        _costText.text = ingredient.PurchaseCost.ToString();
+        _costText.text = rolledPrice.ToString("F0");
 
         SetRarityIndicator(ingredient.Tier);
     }
@@ -92,7 +97,7 @@ public class ItemSlotUI : MonoBehaviour
         if (_pricingGroup.activeSelf && _currentIngredient != null)
         {
             // This is a shop slot, attempt to purchase
-            _supplierManager.AttemptPurchase(_currentIngredient);
+            _supplierManager.AttemptPurchase(_currentIngredient, _currentOfferPrice);
         }
         else if (_currentIngredient != null)
         {

@@ -8765,7 +8765,7 @@ MonoBehaviour:
     category: 0
   _appliedDecalImage: {fileID: 637337586}
   _decalGridContent: {fileID: 1870912496}
-  _decalSlotPrefab: {fileID: 4427351429443535582, guid: 3a678635138089c48a2c1f8893d765c4, type: 3}
+  _decalSlotPrefab: {fileID: 1268410175561977683, guid: e7cbcd9ee4f616e4096b6bd2b35f563f, type: 3}
   _containerVesselArrows: {fileID: 44112599}
   _buttonConfirmVessel: {fileID: 1661330353}
   _containerDecalSystem: {fileID: 1123104189}

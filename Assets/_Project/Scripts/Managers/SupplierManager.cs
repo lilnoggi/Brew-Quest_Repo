@@ -77,6 +77,9 @@ public class SupplierManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+        // --- Dynamic Stock Generation Logic
+        int itemsGeneratedThisVisit = 0;
+
         // Spawn the specific items this vendor sells
         for (int i = 0; i < _totalGridSize; i++)
         {
@@ -87,13 +90,33 @@ public class SupplierManager : MonoBehaviour
             if (slotUI != null)
             {
                 // If vendor has not run out of items for sale yet, set it up as a shop item
-                if (i < vendor.ItemsForSale.Count)
+                if (i < _totalGridSize && itemsGeneratedThisVisit < vendor.MaxStockDisplay && i < vendor.PotentialStockPool.Count)
                 {
-                    slotUI.SetupForShop(vendor.ItemsForSale[i], this);
+                    VendorStockProbability stockItem = vendor.PotentialStockPool[i];
+
+                    // Roll a 100-sided die
+                    float roll = Random.Range(0f, 100f);
+
+                    // Did the item appear?
+                    if (roll <= stockItem.ChanceToAppear)
+                    {
+                        // Roll the specific price between min and max
+                        // Use a float cast to get a clean number, then cast back to a double
+                        double finalPrice = Mathf.Round((float)Random.Range((float)stockItem.MinPrice, (float)stockItem.MaxPrice));
+
+                        // Setup the slot with the dynamic price
+                        slotUI.SetupForShop(stockItem.Ingredient, this, finalPrice);
+                        itemsGeneratedThisVisit++;
+                    }
+                    else
+                    {
+                        // The item didn't roll successfully, leave an empty slot
+                        slotUI.SetupEmptySlot();
+                    }
                 }
                 else
                 {
-                    // Otherwise, set it up as an empty inventory slot
+                    // Out of bounds, leave empty slot
                     slotUI.SetupEmptySlot();
                 }
             }
@@ -108,13 +131,14 @@ public class SupplierManager : MonoBehaviour
     }
 
     // Called by the ItemSlotUI when the player taps an item
-    public void AttemptPurchase(IngredientData itemToBuy)
+    // Pass the specific price that was rolled
+    public void AttemptPurchase(IngredientData itemToBuy, double currentOfferPrice)
     {
         // Check if the player has enough gold
-        if (SaveSystem.Instance.CurrentProfile.totalGoldBalance >= itemToBuy.PurchaseCost)
+        if (SaveSystem.Instance.CurrentProfile.totalGoldBalance >= currentOfferPrice)
         {
             // Deduct gold and add item to inventory
-            SaveSystem.Instance.CurrentProfile.totalGoldBalance -= itemToBuy.PurchaseCost;
+            SaveSystem.Instance.CurrentProfile.totalGoldBalance -= currentOfferPrice;
 
             // Add the ingredient name to the player's save file inventory
             SaveSystem.Instance.AddIngredientToInventory(itemToBuy.IngredientName, 1);
