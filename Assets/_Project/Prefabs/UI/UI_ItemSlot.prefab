@@ -236,6 +236,7 @@ MonoBehaviour:
   _rarityIndicator: {fileID: 6814468686015607297}
   _pricingGroup: {fileID: 8406225188626984472}
   _costText: {fileID: 4384069434182793298}
+  _quantityText: {fileID: 7949627550886255425}
 --- !u!114 &2673625479703360666
 MonoBehaviour:
   m_ObjectHideFlags: 0

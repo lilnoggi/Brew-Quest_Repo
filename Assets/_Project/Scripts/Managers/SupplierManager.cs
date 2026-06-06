@@ -117,7 +117,10 @@ public class SupplierManager : MonoBehaviour
             SaveSystem.Instance.CurrentProfile.totalGoldBalance -= itemToBuy.PurchaseCost;
 
             // Add the ingredient name to the player's save file inventory
-            SaveSystem.Instance.CurrentProfile.ownedIngredients.Add(itemToBuy.IngredientName);
+            SaveSystem.Instance.AddIngredientToInventory(itemToBuy.IngredientName, 1);
+
+            // Refresh the UI
+            // UIManager.Instance.RefreshAllUI();
 
             // Save the game
             SaveSystem.Instance.SaveGameProgress();

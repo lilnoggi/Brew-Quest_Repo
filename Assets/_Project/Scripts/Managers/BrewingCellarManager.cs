@@ -42,18 +42,46 @@ public class BrewingCellarManager : MonoBehaviour
 
     private void InitialiseInventoryGrid()
     {
+        // Clear any placeholder items
+        foreach (Transform child in _gridContentContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
         // Loop 50 times to create the rigid grid
         for (int i = 0; i < _totalGridSize; i++)
         {
             GameObject newSlot = Instantiate(_inventorySlotPrefab, _gridContentContainer);
-            InventorySlotUI slotUI = newSlot.GetComponent<InventorySlotUI>();
+            ItemSlotUI slotUI = newSlot.GetComponent<ItemSlotUI>();
 
             if (slotUI != null)
             {
-                // If we still have ingredients in the database, fill the slot
-                if (i < _masterIngredientDatabase.Count)
+                // Check if there is an item in the saved inventory for this slot index
+                if (i < SaveSystem.Instance.CurrentProfile.ownedIngredientsList.Count)
                 {
-                    slotUI.SetupFilled(_masterIngredientDatabase[i], this);
+                    IngredientInventoryItem savedItem = SaveSystem.Instance.CurrentProfile.ownedIngredientsList[i];
+
+                    // The string is saved. Find the actual IngredientData object
+                    IngredientData foundIngredient = null;
+                    foreach (var ingredient in _masterIngredientDatabase)
+                    {
+                        if (ingredient.IngredientName == savedItem.ingredientName)
+                        {
+                            foundIngredient = ingredient;
+                            break;
+                        }
+                    }
+
+                    // If the ingredient was found set up the slot
+                    if (foundIngredient != null)
+                    {
+                        slotUI.SetupForInventory(foundIngredient, savedItem.quantity);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Ingredient '{savedItem.ingredientName}' not found in master database. Check for typos or ensure the ingredient is added to the database.");
+                        slotUI.SetupEmptySlot(); // Set up as empty if not found
+                    }
                 }
                 else
                 {

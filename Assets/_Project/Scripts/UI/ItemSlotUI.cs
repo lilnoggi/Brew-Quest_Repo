@@ -9,6 +9,7 @@ public class ItemSlotUI : MonoBehaviour
     [SerializeField] private Image _rarityIndicator;
     [SerializeField] private GameObject _pricingGroup;
     [SerializeField] private TextMeshProUGUI _costText;
+    [SerializeField] private TextMeshProUGUI _quantityText;
 
     private IngredientData _currentIngredient;
     private SupplierManager _supplierManager;
@@ -30,10 +31,9 @@ public class ItemSlotUI : MonoBehaviour
     }
 
     // Sets up the slot for an INVENTORY view (Hides price)
-    public void SetupForInventory(IngredientData ingredient, SupplierManager supplier)
+    public void SetupForInventory(IngredientData ingredient, int currentQuantity)
     {
         _currentIngredient = ingredient;
-        _supplierManager = supplier;
 
         _itemIcon.sprite = ingredient.Icon;
         _itemIcon.enabled = true;
@@ -41,7 +41,17 @@ public class ItemSlotUI : MonoBehaviour
         // Turn OFF the pricing group
         _pricingGroup.SetActive(false);
 
+        // Turn ON the quantity text and set the number
+        if (_quantityText != null)
+        {
+            _quantityText.gameObject.SetActive(true);
+            _quantityText.text = "x" + currentQuantity;
+        }
+
         SetRarityIndicator(ingredient.Tier);
+
+        // Ensure the button is interactable if there is more than 0
+        GetComponent<Button>().interactable = currentQuantity > 0;
     }
 
     private void SetRarityIndicator(IngredientTier tier)
@@ -78,7 +88,7 @@ public class ItemSlotUI : MonoBehaviour
         if (_pricingGroup.activeSelf && _currentIngredient != null)
         {
             // This is a shop slot, attempt to purchase
-            // _supplierManager.AttemptPurchase(_currentIngredient);
+            _supplierManager.AttemptPurchase(_currentIngredient);
         }
         else if (_currentIngredient != null)
         {
@@ -96,5 +106,6 @@ public class ItemSlotUI : MonoBehaviour
         _pricingGroup.SetActive(false);
         _rarityIndicator.color = Color.clear; // Hide rarity indicator
         GetComponent<Button>().interactable = false; // Disable button interaction
+        _quantityText.gameObject.SetActive(false); // Hide quantity text if it exists
     }
 }

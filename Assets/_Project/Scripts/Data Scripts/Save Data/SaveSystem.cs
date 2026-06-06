@@ -92,4 +92,23 @@ public class SaveSystem : MonoBehaviour
             Debug.LogWarning("Failed to parse last saved timestamp. No offline earnings calculated.");
         }
     }
+
+    public void AddIngredientToInventory(string ingredientName, int amount)
+    {
+        // Search to see if the ingredient already exists in the inventory
+        foreach (var item in _currentProfileString.ownedIngredientsList)
+        {
+            if (item.ingredientName == ingredientName)
+            {
+                // If it does, just increase the quantity
+                item.quantity += amount;
+                SaveGameProgress();
+                return;
+            }
+        }
+
+        // If it doesn't exist, add a new entry to the inventory list
+        _currentProfileString.ownedIngredientsList.Add(new IngredientInventoryItem(ingredientName, amount));
+        SaveGameProgress();
+    }
 }
