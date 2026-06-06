@@ -16,6 +16,9 @@ public class SupplierManager : MonoBehaviour
     [SerializeField] private Transform _inventoryContentContainer;
     [SerializeField] private GameObject _itemSlotPrefab;
 
+    // --- INVENTORY GRID SIZE VARIABLE ---
+    [SerializeField] private int _totalGridSize = 10; // The total number of slots to display (inventory size)
+
     [Header("UI Animations")]
     [SerializeField] private SlidingMenuUI _shopSlidingPanel;
 
@@ -75,7 +78,7 @@ public class SupplierManager : MonoBehaviour
         }
 
         // Spawn the specific items this vendor sells
-        foreach (IngredientData item in vendor.ItemsForSale)
+        for (int i = 0; i < _totalGridSize; i++)
         {
             GameObject newSlot = Instantiate(_itemSlotPrefab, _inventoryContentContainer);
             ItemSlotUI slotUI = newSlot.GetComponent<ItemSlotUI>();
@@ -83,7 +86,16 @@ public class SupplierManager : MonoBehaviour
             // Pass the item data and "this" manager so the button knows who to talk to
             if (slotUI != null)
             {
-                slotUI.SetupForShop(item, this);
+                // If vendor has not run out of items for sale yet, set it up as a shop item
+                if (i < vendor.ItemsForSale.Count)
+                {
+                    slotUI.SetupForShop(vendor.ItemsForSale[i], this);
+                }
+                else
+                {
+                    // Otherwise, set it up as an empty inventory slot
+                    slotUI.SetupEmptySlot();
+                }
             }
         }
 

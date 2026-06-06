@@ -86,4 +86,15 @@ public class ItemSlotUI : MonoBehaviour
             // Implement inventory interaction logic here
         }
     }
+
+    // Sets up the slot as an empty, un-interactable background
+    public void SetupEmptySlot()
+    {
+        _currentIngredient = null;
+        _itemIcon.sprite = null;
+        _itemIcon.enabled = false;
+        _pricingGroup.SetActive(false);
+        _rarityIndicator.color = Color.clear; // Hide rarity indicator
+        GetComponent<Button>().interactable = false; // Disable button interaction
+    }
 }

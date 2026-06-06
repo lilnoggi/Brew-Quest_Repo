@@ -790,23 +790,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 102154310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
     m_Left: 0
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
-  m_ReverseArrangement: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 175, y: 175}
+  m_Spacing: {x: 20, y: 20}
+  m_Constraint: 1
+  m_ConstraintCount: 5
 --- !u!1 &106802150
 GameObject:
   m_ObjectHideFlags: 0
@@ -8838,6 +8836,7 @@ MonoBehaviour:
   _vendorGreetingText: {fileID: 990210945}
   _inventoryContentContainer: {fileID: 102154311}
   _itemSlotPrefab: {fileID: 1268410175561977683, guid: e7cbcd9ee4f616e4096b6bd2b35f563f, type: 3}
+  _totalGridSize: 10
   _shopSlidingPanel: {fileID: 1993289035}
   _allVendorsDatabase:
   - {fileID: 11400000, guid: 75324a7faf6ae4446a1e77336d23c27d, type: 2}
@@ -13485,7 +13484,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 133843609}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
