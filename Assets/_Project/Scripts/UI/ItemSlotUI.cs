@@ -10,6 +10,7 @@ public class ItemSlotUI : MonoBehaviour
     [SerializeField] private GameObject _pricingGroup;
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private TextMeshProUGUI _quantityText;
+    [SerializeField] private TextMeshProUGUI _itemName;
 
     [Header("Vendor Settings")]
     private double _currentOfferPrice; // Holds the specific price this vendor rolled today
@@ -34,6 +35,8 @@ public class ItemSlotUI : MonoBehaviour
         _pricingGroup.SetActive(true);
         _costText.text = rolledPrice.ToString("F0");
 
+        _itemName.text = ingredient.name;
+
         SetRarityIndicator(ingredient.Tier);
     }
 
@@ -56,6 +59,8 @@ public class ItemSlotUI : MonoBehaviour
             _quantityText.gameObject.SetActive(true);
             _quantityText.text = "x" + currentQuantity;
         }
+
+        _itemName.text = ingredient.name;
 
         SetRarityIndicator(ingredient.Tier);
 
@@ -116,5 +121,6 @@ public class ItemSlotUI : MonoBehaviour
         _rarityIndicator.color = Color.clear; // Hide rarity indicator
         GetComponent<Button>().interactable = false; // Disable button interaction
         _quantityText.gameObject.SetActive(false); // Hide quantity text if it exists
+        _itemName.gameObject.SetActive(false);
     }
 }

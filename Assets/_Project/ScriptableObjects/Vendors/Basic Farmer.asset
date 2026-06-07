@@ -52,3 +52,19 @@ MonoBehaviour:
     ChanceToAppear: 40
     MinPrice: 9
     MaxPrice: 20
+  - Ingredient: {fileID: 11400000, guid: 332f8d250e6ab734d9cba3ba81b72f40, type: 2}
+    ChanceToAppear: 100
+    MinPrice: 1
+    MaxPrice: 3
+  - Ingredient: {fileID: 11400000, guid: a31148c9c57dba548934d23eef54fbd2, type: 2}
+    ChanceToAppear: 100
+    MinPrice: 2
+    MaxPrice: 4
+  - Ingredient: {fileID: 11400000, guid: 91dee59ada1cf3a43886dd170547221f, type: 2}
+    ChanceToAppear: 80
+    MinPrice: 3
+    MaxPrice: 5
+  - Ingredient: {fileID: 11400000, guid: 2ab8e9e6c99a510499e9f8a2fb2be471, type: 2}
+    ChanceToAppear: 100
+    MinPrice: 2
+    MaxPrice: 4
